@@ -6,13 +6,18 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app">
-{{ message}}
-<div v-bind:id="message"></div>
+                    <div id="app">
+                            {{ message}}
+                            <div v-bind:id="message"></div>
+                            <todo-list></todo-list>
+                    </div>
+                    <div id="app-2">
+                            <span v-bind:title="message">
+                                鼠标悬停几秒钟查看此处动态绑定的提示信息！
+                            </span>
+                    </div>
+                    
 
-<todo-list></todo-list>
-<div :id="message"></div>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         Vue.component('todo-item',{
@@ -70,6 +75,12 @@
             data:{
                 message:'Hello world',
                 
+            }
+        })
+        var app2 = new Vue({
+            el:"#app-2",
+            data:{
+                message:'页面加载于'+new Date().toLocaleString()
             }
         })
     </script>
