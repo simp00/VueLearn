@@ -43,7 +43,11 @@
                                 v-bind:key="item.id"
                             ></todo-item1>
                         </ol>
-                    </div>    
+                    </div>   
+                    <div id="example-1">
+                        <button v-on:click="counter += 1">Add 1 </button>
+                        <p>The button above has been clicked {{counter }}times.</p>
+                    </div> 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         Vue.component('todo-item1',{
@@ -62,14 +66,14 @@
                     <li >
                     <span v-if="!del">{{title}}</span>
                     <span v-else style="text-decoration:line-through">{{title}}</span>
-                    <button v-show="!del" @click="hanleClick">删除</button>
+                    <button v-show="!del" @click.stop="hanleClick">删除</button>
                     </li>
                     `,
             data:function(){
                 return {}
             },
             methods:{
-               hanleClick(){
+               hanleClick(e){
                     console.log('点击删除按钮') 
                     this.$emit('delete',this.title)
                 }
@@ -155,6 +159,12 @@
                     {id:1,text:'奶酪'},
                     {id:2,text:'牛主任'},
                 ]
+            }
+        })
+        var example1 = new Vue({
+            el:'#example-1',
+            data:{
+                counter:0
             }
         })
     </script>
